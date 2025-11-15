@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}New Post | Blogger{% endblock %}
+
+{% block content %}
+
+  <section class="page-header">
+    <h2>New post</h2>
+    <p class="page-subtitle">Write something simple and honest.</p>
+  </section>
+
+  <form method="post" class="post-form">
+    {% csrf_token %}
+
+    <div class="field">
+      <label for="id_title">Title</label>
+      <input type="text" id="id_title" name="title" required>
+    </div>
+
+    <div class="field">
+      <label for="id_content">Content</label>
+      <textarea id="id_content" name="content" rows="6" required></textarea>
+    </div>
+
+    <div class="field checkbox">
+      <label>
+        <input type="checkbox" name="is_published" checked>
+        Publish now
+      </label>
+    </div>
+
+    <button type="submit" class="btn-main">Save post</button>
+  </form>
+
+{% endblock %}

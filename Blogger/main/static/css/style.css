@@ -1,0 +1,197 @@
+:root {
+  --blush: #fbe7f2;      /* وردي ناعم */
+  --blush-deep: #f1bfdc; /* وردي أعمق شوي */
+  --ink: #1f2933;        /* نص داكن */
+  --muted: #6b7280;      /* رمادي هادي */
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --accent: #a855f7;     /* بنفسجي ناعم */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, var(--blush), #f9fafb);
+  color: var(--ink);
+}
+
+/* الهيدر */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.logo a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.main-nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.main-nav a:hover {
+  color: var(--accent);
+}
+
+/* المحتوى الرئيسي */
+
+.site-main {
+  max-width: 800px;
+  margin: 24px auto 32px;
+  padding: 0 16px;
+}
+
+/* عنوان الصفحة */
+
+.page-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.4rem;
+}
+
+.page-subtitle {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* قائمة البوستات */
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.post-title {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.post-date {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.post-content {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* رسالة لا يوجد بوستات */
+
+.empty-message {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* فورم إضافة بوست */
+
+.post-form {
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  max-width: 640px;
+}
+
+.field {
+  margin-bottom: 12px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.field.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* زر رئيسي */
+
+.btn-main {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--blush-deep));
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-main:hover {
+  opacity: 0.9;
+}
+
+/* الفوتر */
+
+.site-footer {
+  text-align: center;
+  padding: 16px 0 20px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}

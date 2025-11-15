@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Home | Blogger{% endblock %}
+
+{% block content %}
+
+  <section class="page-header">
+    <h2>Latest posts</h2>
+    <p class="page-subtitle">A small space for your notes and thoughts.</p>
+  </section>
+
+  {% if posts %}
+    <section class="posts-list">
+      {% for post in posts %}
+        <article class="post-card">
+          <h3 class="post-title">{{ post.title }}</h3>
+
+          <p class="post-date">
+            {{ post.published_at|date:"Y-m-d" }}
+            ·
+            {{ post.published_at|time:"H:i" }}
+          </p>
+
+          <p class="post-content">
+            {{ post.content }}
+          </p>
+        </article>
+      {% endfor %}
+    </section>
+  {% else %}
+    <p class="empty-message">
+      No posts yet. You can start by adding your first one 💌
+    </p>
+  {% endif %}
+
+{% endblock %}

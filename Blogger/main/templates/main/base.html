@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Blogger{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">
+      <span class="dot"></span>
+      <a href="{% url 'main:home_view' %}">Blogger</a>
+    </div>
+
+    <nav class="main-nav">
+      <a href="{% url 'main:home_view' %}">Home</a>
+      <a href="{% url 'blog:create_blog_view' %}">New Post</a>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <small>© Blogger — Maha Saud </small>
+  </footer>
+
+</body>
+</html>
