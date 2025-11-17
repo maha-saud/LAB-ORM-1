@@ -9,7 +9,7 @@
     <p class="page-subtitle">Write something simple and honest.</p>
   </section>
 
-  <form method="post" class="post-form">
+  <form method="post" class="post-form" action="{% url 'blog:create_blog_view' %}" enctype="multipart/form-data" >  <!-- بدون الانكودنق تايب هذا خصوصا  ما راح يقدر يرسل الملف -->
     {% csrf_token %}
 
     <div class="field">
@@ -28,7 +28,7 @@
         Publish now
       </label>
     </div>
-
+    <input type="file" name="poster" class="file-input"/>
     <button type="submit" class="btn-main">Save post</button>
   </form>
 

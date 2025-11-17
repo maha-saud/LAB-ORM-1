@@ -4,13 +4,14 @@ from .models import Post
 
 
 def create_blog_view(request):
-    # لو الفورم انرسل
+    #  حتى هنا اختلفت الطريقه عنه لو الفورم انرسل
     if request.method == "POST":
         title = request.POST.get("title", "").strip()
         content = request.POST.get("content", "").strip()
         is_published = request.POST.get("is_published") == "on"
+        poster = request.FILES("poster")
 
-        # تأكد بسيط إن فيه عنوان ومحتوى
+        # تأكد بسيط إن فيه عنوان ومحتوى هذي زياده عن الاستاذ 
         if title and content:
             Post.objects.create(
                 title=title,

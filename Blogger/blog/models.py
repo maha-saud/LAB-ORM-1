@@ -13,7 +13,9 @@ class Post(models.Model):
 
     # وقت النشر (الافتراضي الآن)
     published_at = models.DateTimeField(default=timezone.now)
-
+    # حقل اضافي لستقبال الصور من اليوزر 
+    poster = models.ImageField(upload_to="images/", default="images/default.jpg") # كتنظيم ولا يمديني استغني عنها و بس اكتب ابلود تو مباشرة 
+    # عينت قيمه افتراضيه لو ما حط اليوزر صوره هي تتعين تلقائي او لو اضفتها بعدين الي ما كان لهم صور تصير هذي الصوره لهم تتعين 
     def __str__(self):
         # عشان يظهر العنوان في لوحة التحكم
         return self.title

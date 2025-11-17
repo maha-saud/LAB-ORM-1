@@ -14,6 +14,8 @@
       {% for post in posts %}
         <article class="post-card">
           <h3 class="post-title">{{ post.title }}</h3>
+          <!--هنا اضفنا الصوره-->
+          <img src="{{post.poster.url}}" class="post-image" alt="{{ post.title }}"/>
 
           <p class="post-date">
             {{ post.published_at|date:"Y-m-d" }}
