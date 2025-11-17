@@ -1,35 +1,33 @@
 {% extends 'main/base.html' %}
 
-{% block title %}New Post | Blogger{% endblock %}
+{% block title %}Create New Post{% endblock %}
 
 {% block content %}
+<h1>Create Post</h1>
 
-  <section class="page-header">
-    <h2>New post</h2>
-    <p class="page-subtitle">Write something simple and honest.</p>
-  </section>
+<div class="row">
 
-  <form method="post" class="post-form" action="{% url 'blog:create_blog_view' %}" enctype="multipart/form-data" >  <!-- بدون الانكودنق تايب هذا خصوصا  ما راح يقدر يرسل الملف -->
-    {% csrf_token %}
+  <div class="col-6">
 
-    <div class="field">
-      <label for="id_title">Title</label>
-      <input type="text" id="id_title" name="title" required>
-    </div>
+    <form class="d-flex flex-column gap-2" action="{% url 'blog:create_blog_view' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
 
-    <div class="field">
-      <label for="id_content">Content</label>
-      <textarea id="id_content" name="content" rows="6" required></textarea>
-    </div>
+      <input type="text" placeholder="Title" name="title" class="form-control" required minlength="5" maxlength="2048"/>
 
-    <div class="field checkbox">
-      <label>
-        <input type="checkbox" name="is_published" checked>
-        Publish now
-      </label>
-    </div>
-    <input type="file" name="poster" class="file-input"/>
-    <button type="submit" class="btn-main">Save post</button>
-  </form>
+      <textarea placeholder="Content" name="content" class="form-control" required></textarea>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="is_published" id="is_published" checked>
+        <label class="form-check-label" for="is_published">Publish now</label>
+      </div>
+
+      <input type="file" name="poster" class="form-control" accept="image/*" />
+
+      <input type="submit" value="Create Post" class="btn btn-primary" />
+    </form>
+
+  </div>
+
+</div>
 
 {% endblock %}

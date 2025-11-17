@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}All Posts{% endblock %}
+
+{% block content %}
+<h1>Posts</h1>
+
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+
+  {% for post in posts %}
+    <div class="col">
+      <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow gap-2">
+
+        <img src="{{ post.poster.url }}" class="w-100 poster-thumb object-fit-cover"/>
+
+        <a href="{% url 'blog:blog_detail_view' post.id %}">
+          <h3>{{ post.title }}</h3>
+        </a>
+
+        <h6>
+          {{ post.published_at|date:"Y-m-d" }}
+          ·
+          {{ post.published_at|time:"H:i" }}
+        </h6>
+
+      </div>
+    </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

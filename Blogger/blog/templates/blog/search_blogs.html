@@ -1,0 +1,51 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Search Posts{% endblock %}
+
+{% block content %}
+{% if posts %}
+<h1>Search Results ({{ posts.count }})</h1>
+<h5>results for: {{ request.GET.search }}</h5>
+
+<div class="d-flex justify-content-end">
+  <form action="{% url 'blog:search_posts_view' %}" method="GET">
+    <div class="d-flex gap-3">
+      <input type="search" class="form-control" value="{{ request.GET.search }}" name="search" required />
+      <select name="order_by" class="form-select">
+        <option value="">Order By</option>
+        <option value="published_at" {% if request.GET.order_by == 'published_at' %} selected {% endif %}>Newest First</option>
+      </select>
+      <input type="submit" value="Apply" class="btn btn-primary"/>
+    </div>
+  </form>
+</div>
+
+{% else %}
+<p class="bg-warning p-3 rounded">
+  No results found for your search "{{ request.GET.search }}"
+</p>
+{% endif %}
+
+<div class="row mt-2 row-cols-1 row-cols-md-3 g-4">
+
+  {% for post in posts %}
+  <div class="col">
+    <div class="d-flex flex-column justify-content-start align-items-start h-100 p-4 shadow gap-2">
+
+      <img src="{{ post.poster.url }}" class="w-100 poster-thumb object-fit-cover"/>
+
+      <a href="{% url 'blog:blog_detail_view' post.id %}"><h3>{{ post.title }}</h3></a>
+
+      <h6>
+        {{ post.published_at|date:"Y-m-d" }}
+        ·
+        {{ post.published_at|time:"H:i" }}
+      </h6>
+
+    </div>
+  </div>
+  {% endfor %}
+  
+</div>
+
+{% endblock %}

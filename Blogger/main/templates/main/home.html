@@ -4,35 +4,49 @@
 
 {% block content %}
 
-  <section class="page-header">
-    <h2>Latest posts</h2>
-    <p class="page-subtitle">A small space for your notes and thoughts.</p>
-  </section>
+<section class="page-header">
+  <h2>Latest posts</h2>
+  <p class="page-subtitle">A small space for your notes and thoughts.</p>
+</section>
 
-  {% if posts %}
-    <section class="posts-list">
-      {% for post in posts %}
-        <article class="post-card">
-          <h3 class="post-title">{{ post.title }}</h3>
-          <!--هنا اضفنا الصوره-->
-          <img src="{{post.poster.url}}" class="post-image" alt="{{ post.title }}"/>
+{% if posts %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
 
-          <p class="post-date">
-            {{ post.published_at|date:"Y-m-d" }}
-            ·
-            {{ post.published_at|time:"H:i" }}
-          </p>
+  {% for post in posts %}
+  <div class="col">
 
-          <p class="post-content">
-            {{ post.content }}
-          </p>
-        </article>
-      {% endfor %}
-    </section>
-  {% else %}
-    <p class="empty-message">
-      No posts yet. You can start by adding your first one 💌
-    </p>
-  {% endif %}
+    <div class="card h-100 shadow-sm border-0">
+
+    {% if post.poster %}
+  <img src="{{ post.poster.url }}" class="card-img-top" alt="{{ post.title }}">
+{% else %}
+  <img src="/media/images/default.jpg" class="card-img-top" alt="{{ post.title }}">
+{% endif %}
+
+
+      <div class="card-body">
+        <h5 class="card-title mb-1">{{ post.title }}</h5>
+        <p class="text-muted mb-2" style="font-size: 0.85rem;">
+          {{ post.published_at|date:"Y-m-d" }} · {{ post.published_at|time:"H:i" }}
+        </p>
+        <p class="card-text">
+          {{ post.content|truncatechars:100 }}
+        </p>
+        <a href="{% url 'blog:blog_detail_view' post.id %}" class="btn btn-primary btn-sm">
+          Read more
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>
+{% else %}
+<p class="empty-message">
+  No posts yet. You can start by adding your first one 💌
+</p>
+{% endif %}
 
 {% endblock %}
