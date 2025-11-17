@@ -9,13 +9,14 @@ def create_blog_view(request):
         title = request.POST.get("title", "").strip()
         content = request.POST.get("content", "").strip()
         is_published = request.POST.get("is_published") == "on"
-        poster = request.FILES("poster")
+        poster = request.FILES.get("poster") 
 
         # تأكد بسيط إن فيه عنوان ومحتوى هذي زياده عن الاستاذ 
         if title and content:
             Post.objects.create(
                 title=title,
                 content=content,
+                poster=poster,
                 is_published=is_published,
                 published_at=timezone.now()
             )
